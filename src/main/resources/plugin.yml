@@ -1,0 +1,17 @@
+name: MGGods
+author: janie177
+version ${project.version}
+depend: [MGRacesRedone]
+main: net.minegusta.mggods.main.Main
+commands:
+  gods:
+    description: The base MGGods command.
+    usage: /Gods
+    permission: minegusta.gods
+    permission-message: You do not have permission to use this.
+    default: false
+
+permissions:
+  minegusta.gods:
+    default: false
+    description: Use the /Gods command.
