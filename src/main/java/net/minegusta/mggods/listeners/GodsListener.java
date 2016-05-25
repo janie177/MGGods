@@ -162,22 +162,22 @@ public class GodsListener implements Listener {
 	@EventHandler
 	public void onSignChange(SignChangeEvent e)
 	{
+		if(!WorldCheck.isEnabled(e.getPlayer().getWorld()))return;
+
 		int empty = 0;
 		boolean god = false;
 		God chosen = null;
+		MGPlayer mgp = PlayerData.getPlayer(e.getPlayer());
 
 		for(String s : e.getLines()) {
 			if (s == null || s.isEmpty()) {
 				empty++;
 			} else
 			{
-				for(God g : God.values())
+				God g = mgp.getGod();
+				if(g.name().equalsIgnoreCase(s))
 				{
-					if(g.name().equalsIgnoreCase(s))
-					{
-						god = true;
-						chosen = g;
-					}
+					god = true;
 				}
 			}
 		}
@@ -187,8 +187,8 @@ public class GodsListener implements Listener {
 			for(int i = 0; i < 4; i++)
 			{
 				e.setLine(i, chosen.getGod().getShrineLine(i));
-				ChatUtil.sendString(e.getPlayer(), ChatColor.YELLOW + "You created a shrine for your god.");
 			}
+			ChatUtil.sendString(e.getPlayer(), ChatColor.YELLOW + "You created a shrine for your god.");
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class GodsCommand implements CommandExecutor {
 
 	private static final String[] help = new String[]{
 			ChatColor.YELLOW + "/Gods Power" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show all gods and their power.",
-			ChatColor.YELLOW + "/Gods Info <AbstractGod>" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about the specified god.",
+			ChatColor.YELLOW + "/Gods Info <God>" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about the specified god.",
 			ChatColor.YELLOW + "/Gods Info" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about your god.",
 			ChatColor.YELLOW + "/Gods List" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "List all gods.",
 			ChatColor.YELLOW + "/Gods Players" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show online players stats."
@@ -60,13 +60,13 @@ public class GodsCommand implements CommandExecutor {
 					sendHelp.add(ChatColor.YELLOW + "The following blocks can be used on shrines.");
 					for(ShrineBlock s : god.getGod().getShrineBlocks())
 					{
-						sendHelp.add(ChatColor.GRAY + "- " + s.getMaterial().name() + " - Value: " + s.getValue());
+						sendHelp.add(ChatColor.GRAY + "- " + ChatColor.DARK_GREEN + s.getMaterial().name() + ChatColor.DARK_PURPLE + " Value: " + ChatColor.YELLOW + s.getValue());
 					}
-					sendHelp.add(ChatColor.YELLOW + "The bigger the value of the shrine, the bigger your reward.");
-					sendHelp.add(ChatColor.LIGHT_PURPLE + "Place a sign on your shrine with your god's name on it.");
-					sendHelp.add(ChatColor.LIGHT_PURPLE + "Right click it once per day to pray and gain rewards.");
-					sendHelp.add(ChatColor.LIGHT_PURPLE + "Shrines only work when your god has most power.");
-					sendHelp.add(ChatColor.LIGHT_PURPLE + "Blocks in a radius of 8 around your shrine are counted.");
+					sendHelp.add(ChatColor.YELLOW + " The bigger the value of the shrine, the bigger your reward.");
+					sendHelp.add(ChatColor.LIGHT_PURPLE + " Place a sign on your shrine with your god's name on it.");
+					sendHelp.add(ChatColor.LIGHT_PURPLE + " Right click it once per day to pray and gain rewards.");
+					sendHelp.add(ChatColor.LIGHT_PURPLE + " Shrines only work when your god has most power.");
+					sendHelp.add(ChatColor.LIGHT_PURPLE + " Blocks in a radius of 8 around your shrine are counted.");
 
 					ChatUtil.sendList(p, sendHelp.toArray(new String[sendHelp.size()]));
 					return true;

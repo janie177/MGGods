@@ -11,7 +11,7 @@ public class ChatUtil {
 
 	public static void sendList(Player p, String[] strings)
 	{
-		p.sendMessage(ChatColor.YELLOW + "______." + ChatColor.DARK_PURPLE + "[" + ChatColor.LIGHT_PURPLE + "GODS" + ChatColor.DARK_PURPLE + "]" + ChatColor.YELLOW + ".______");
+		p.sendMessage(ChatColor.YELLOW + "------------." + ChatColor.DARK_PURPLE + "[" + ChatColor.LIGHT_PURPLE + "GODS" + ChatColor.DARK_PURPLE + "]" + ChatColor.YELLOW + ".------------");
 		for(String s : strings)
 		{
 			p.sendMessage(" " + s);
