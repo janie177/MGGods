@@ -1,5 +1,6 @@
 package net.minegusta.mggods.config;
 
+import net.minegusta.mggods.main.GodsPlugin;
 import net.minegusta.mggods.playerdata.MGPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -13,7 +14,10 @@ public class PlayerFileManager {
 		FileConfiguration conf = FileManager.getFile(uuid);
 		MGPlayer mgp = new MGPlayer(
 				uuid,
-				conf.getLong("last-prayer", 0)
+				p.getName(),
+				GodsPlugin.getGodForPlayer(p),
+				conf.getLong("last-prayer", 0),
+				conf.getLong("power-earned", 0)
 		);
 
 		return mgp;
@@ -24,8 +28,9 @@ public class PlayerFileManager {
 		String uuid = mgp.getUuid();
 
 		FileConfiguration conf = FileManager.getFile(uuid);
+		conf.set("name", mgp.getName());
 		conf.set("last-prayer", mgp.getNextPrayer());
-		conf.set("marriage-id", mgp.getMarriage().isPresent() ? mgp.getMarriage().get() : null);
+		conf.set("power-earned", mgp.getPowerEarned());
 
 		FileManager.save(uuid, conf);
 	}

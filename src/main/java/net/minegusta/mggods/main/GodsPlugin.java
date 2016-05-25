@@ -20,6 +20,18 @@ public class GodsPlugin {
 		return God.TALOS;
 	}
 
+	public static God getGodForRace(RaceType race)
+	{
+		for(God g : God.values())
+		{
+			if(g.getGod().getRaces().contains(race))
+			{
+				return g;
+			}
+		}
+		return God.TALOS;
+	}
+
 	public static God getLeadingGod()
 	{
 		int maxPower = 0;

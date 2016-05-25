@@ -6,6 +6,8 @@ import net.minegusta.mggods.gods.AbstractGod;
 import net.minegusta.mggods.gods.God;
 import net.minegusta.mggods.gods.shrineblocks.ShrineBlock;
 import net.minegusta.mggods.main.GodsPlugin;
+import net.minegusta.mggods.playerdata.MGPlayer;
+import net.minegusta.mggods.playerdata.PlayerData;
 import net.minegusta.mggods.util.ChatUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,10 +20,11 @@ import java.util.List;
 public class GodsCommand implements CommandExecutor {
 
 	private static final String[] help = new String[]{
-			ChatColor.YELLOW + "/God Power" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show all gods and their power.",
-			ChatColor.YELLOW + "/God Info <AbstractGod>" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about the specified god.",
-			ChatColor.YELLOW + "/God Info" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about your god.",
-			ChatColor.YELLOW + "/God List" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "List all gods."
+			ChatColor.YELLOW + "/Gods Power" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show all gods and their power.",
+			ChatColor.YELLOW + "/Gods Info <AbstractGod>" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about the specified god.",
+			ChatColor.YELLOW + "/Gods Info" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show info about your god.",
+			ChatColor.YELLOW + "/Gods List" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "List all gods.",
+			ChatColor.YELLOW + "/Gods Players" + ChatColor.GRAY + " - " + ChatColor.ITALIC + "Show online players stats."
 	};
 
 	@Override
@@ -46,9 +49,10 @@ public class GodsCommand implements CommandExecutor {
 
 			if(args.length == 1)
 			{
+				MGPlayer mgp = PlayerData.getPlayer(p);
 				if(args[0].equalsIgnoreCase("info"))
 				{
-					List<String> sendHelp = Lists.newArrayList(ChatColor.GOLD + "Your race follows the god " + god.getGod().getName() + ChatColor.GOLD + ".", god.getGod().getName() +  ChatColor.LIGHT_PURPLE + " has " + ChatColor.YELLOW + god.getGod().getPower() + ChatColor.LIGHT_PURPLE + " power.");
+					List<String> sendHelp = Lists.newArrayList(ChatColor.GOLD + "Your race follows the god " + god.getGod().getName() + ChatColor.GOLD + ".", god.getGod().getName() +  ChatColor.LIGHT_PURPLE + " has " + ChatColor.YELLOW + god.getGod().getPower() + ChatColor.LIGHT_PURPLE + " power.", ChatColor.YELLOW + "You earned your god " + ChatColor.AQUA + mgp.getPowerEarned() + ChatColor.YELLOW + " power in total.");
 					for(String s : god.getGod().getDescription())
 					{
 						sendHelp.add(ChatColor.GRAY + s);
@@ -64,6 +68,19 @@ public class GodsCommand implements CommandExecutor {
 					sendHelp.add(ChatColor.LIGHT_PURPLE + "Shrines only work when your god has most power.");
 					sendHelp.add(ChatColor.LIGHT_PURPLE + "Blocks in a radius of 8 around your shrine are counted.");
 
+					ChatUtil.sendList(p, sendHelp.toArray(new String[sendHelp.size()]));
+					return true;
+				}
+				if(args[0].equalsIgnoreCase("players"))
+				{
+					List<String> sendHelp = Lists.newArrayList(ChatColor.YELLOW + "..-[" + ChatColor.GOLD + " Player" + ChatColor.DARK_GRAY + "   |   " + ChatColor.DARK_PURPLE + "Power Earned " + ChatColor.YELLOW + "]-..");
+					PlayerData.getMGPlayers().stream().forEach(mp ->
+					{
+						if(mp.getGod() == mgp.getGod())
+						{
+							sendHelp.add(ChatColor.GRAY + " - " + mp.getName() + ChatColor.DARK_GRAY + " | " + ChatColor.DARK_PURPLE + mp.getPowerEarned());
+						}
+					});
 					ChatUtil.sendList(p, sendHelp.toArray(new String[sendHelp.size()]));
 					return true;
 				}

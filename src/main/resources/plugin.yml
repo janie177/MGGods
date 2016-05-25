@@ -1,6 +1,6 @@
 name: MGGods
 author: janie177
-version ${project.version}
+version: ${project.version}
 depend: [MGRacesRedone]
 main: net.minegusta.mggods.main.Main
 commands:
@@ -10,7 +10,6 @@ commands:
     permission: minegusta.gods
     permission-message: You do not have permission to use this.
     default: false
-
 permissions:
   minegusta.gods:
     default: false

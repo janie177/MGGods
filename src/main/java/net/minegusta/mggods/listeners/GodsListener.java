@@ -1,9 +1,12 @@
 package net.minegusta.mggods.listeners;
 
+import com.minegusta.mgracesredone.events.RaceChangeEvent;
+import com.minegusta.mgracesredone.races.RaceType;
 import com.minegusta.mgracesredone.util.WorldCheck;
 import net.minegusta.mggods.config.PlayerFileManager;
 import net.minegusta.mggods.gods.God;
 import net.minegusta.mggods.main.GodsPlugin;
+import net.minegusta.mggods.playerdata.MGPlayer;
 import net.minegusta.mggods.playerdata.PlayerData;
 import net.minegusta.mggods.util.ChatUtil;
 import net.minegusta.mggods.util.ShrineCooldown;
@@ -25,6 +28,19 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 public class GodsListener implements Listener {
+
+	//Listen for race change
+	@EventHandler
+	public void onRaceChange(RaceChangeEvent e)
+	{
+		MGPlayer mgp = PlayerData.getPlayer(e.getPlayer());
+		mgp.setPowerEarned(0);
+		try {
+			RaceType race = RaceType.valueOf(e.to());
+			God god = GodsPlugin.getGodForRace(race);
+			mgp.setGod(god);
+		} catch (Exception ignored){}
+	}
 
 	//Load player
 	@EventHandler
@@ -50,6 +66,7 @@ public class GodsListener implements Listener {
 		if(!WorldCheck.isEnabled(p.getWorld()))return;
 
 		God god = GodsPlugin.getGodForPlayer(p);
+		MGPlayer mgp = PlayerData.getPlayer(p);
 
 		if(p.getLastDamageCause() instanceof EntityDamageByEntityEvent)
 		{
@@ -57,12 +74,13 @@ public class GodsListener implements Listener {
 			if(damageEvent.getDamager() instanceof Player)
 			{
 				Player damager = (Player) damageEvent.getDamager();
+				MGPlayer damagerMGP = PlayerData.getPlayer(damager);
 				God damagerGod = GodsPlugin.getGodForPlayer(damager);
 				if(damagerGod != god)
 				{
-					damagerGod.getGod().addPower(5);
+					damagerGod.getGod().addPower(5, damagerMGP);
 					ChatUtil.sendString(damager, "Your god gained 5 power because you killed " + p.getName() + ".");
-					god.getGod().removePower(4);
+					god.getGod().removePower(4, mgp);
 					ChatUtil.sendString(p, "Your god lost 4 power because you died to another god's follower.");
 				}
 			}
@@ -70,11 +88,12 @@ public class GodsListener implements Listener {
 			{
 				Player damager = (Player) ((Projectile) damageEvent.getDamager()).getShooter();
 				God damagerGod = GodsPlugin.getGodForPlayer(damager);
+				MGPlayer damagerMGP = PlayerData.getPlayer(damager);
 				if(damagerGod != god)
 				{
-					damagerGod.getGod().addPower(5);
+					damagerGod.getGod().addPower(5, damagerMGP);
 					ChatUtil.sendString(damager, "Your god gained 5 power because you killed " + p.getName() + ".");
-					god.getGod().removePower(4);
+					god.getGod().removePower(4, mgp);
 					ChatUtil.sendString(p, "Your god lost 4 power because you died to another god's follower.");
 				}
 			}
@@ -82,7 +101,7 @@ public class GodsListener implements Listener {
 		else
 		{
 			ChatUtil.sendString(p, "Your god lost 2 power because you died.");
-			god.getGod().removePower(2);
+			god.getGod().removePower(2, mgp);
 		}
 	}
 
@@ -123,6 +142,7 @@ public class GodsListener implements Listener {
 											ChatColor.GRAY + "need to have the most power of all.",
 											ChatColor.LIGHT_PURPLE + "Your god gained 2 power from your prayer."
 									});
+							god.getGod().addPower(2, PlayerData.getPlayer(p));
 						}
 					}
 					else

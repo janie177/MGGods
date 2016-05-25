@@ -29,9 +29,7 @@
           <root url="jar://$MODULE_DIR$/depends/MGRacesRedone.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../MGRacesRedone/src/main/java" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
