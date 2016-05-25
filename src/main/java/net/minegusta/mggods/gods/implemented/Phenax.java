@@ -21,7 +21,7 @@ public class Phenax extends AbstractGod {
 				"Phenax is the god of evil.",
 				"He is followed by the dark races of the world.",
 				"War, Cruelty and pain are his domains as he seeks to",
-				"reign the world. Slaying holy races gives him strength."
+				"reign the world. Slaying non-allied gives him strength."
 		};
 	}
 

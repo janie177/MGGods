@@ -4,6 +4,7 @@ import com.minegusta.mgracesredone.util.RandomUtil;
 import net.minegusta.mggods.gods.God;
 import net.minegusta.mggods.gods.shrineblocks.ShrineBlock;
 import net.minegusta.mggods.main.GodsPlugin;
+import net.minegusta.mggods.playerdata.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -42,7 +43,7 @@ public class ShrineUtil {
 	}
 
 	public static boolean isShrine(Sign s, Player p) {
-		String godName = GodsPlugin.getGodForPlayer(p).name();
+		String godName = PlayerData.getPlayer(p).getGod().getGod().getName();
 		return s.getLine(1).equalsIgnoreCase(godName);
 	}
 

@@ -20,7 +20,7 @@ public class Silas extends AbstractGod {
 		return new String[]{
 				"Silas is the god of all that is good.",
 				"His followers are tasked with purging the land",
-				"of unholy races. He gains strength when they are slain.",
+				"of unholy races and humans. He gains strength when they are slain.",
 				"Though peace is his intention, it can only be achieved",
 				"with the sword. His enemy is the cruel Phenax after all."
 		};
