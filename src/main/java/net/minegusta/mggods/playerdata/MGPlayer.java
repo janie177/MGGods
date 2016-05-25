@@ -24,7 +24,7 @@ public class MGPlayer {
 	}
 
 	public void setLastPrayer() {
-		this.nextPrayer = System.currentTimeMillis() + 64800000;
+		this.nextPrayer = System.currentTimeMillis() + 3600000;
 	}
 
 	public String getUuid() {
