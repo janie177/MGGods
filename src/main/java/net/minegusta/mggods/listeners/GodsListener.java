@@ -68,20 +68,17 @@ public class GodsListener implements Listener {
 		God god = GodsPlugin.getGodForPlayer(p);
 		MGPlayer mgp = PlayerData.getPlayer(p);
 
-		if(p.getLastDamageCause() instanceof EntityDamageByEntityEvent)
-		{
+		if(p.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
 			EntityDamageByEntityEvent damageEvent = (EntityDamageByEntityEvent) p.getLastDamageCause();
-			if(damageEvent.getDamager() instanceof Player)
-			{
+			if (damageEvent.getDamager() instanceof Player) {
 				Player damager = (Player) damageEvent.getDamager();
 				MGPlayer damagerMGP = PlayerData.getPlayer(damager);
 				God damagerGod = GodsPlugin.getGodForPlayer(damager);
-				if(damagerGod != god)
-				{
+				if (damagerGod != god) {
 					damagerGod.getGod().addPower(5, damagerMGP);
 					ChatUtil.sendString(damager, "Your god gained 5 power because you killed " + p.getName() + ".");
-					god.getGod().removePower(4, mgp);
-					ChatUtil.sendString(p, "Your god lost 4 power because you died to another god's follower.");
+					god.getGod().removePower(6, mgp);
+					ChatUtil.sendString(p, "Your god lost 6 power because you died to another god's follower.");
 				}
 			}
 			else if(damageEvent.getDamager() instanceof Projectile && ((Projectile) damageEvent.getDamager()).getShooter() instanceof Player)
@@ -93,9 +90,13 @@ public class GodsListener implements Listener {
 				{
 					damagerGod.getGod().addPower(5, damagerMGP);
 					ChatUtil.sendString(damager, "Your god gained 5 power because you killed " + p.getName() + ".");
-					god.getGod().removePower(4, mgp);
-					ChatUtil.sendString(p, "Your god lost 4 power because you died to another god's follower.");
+					god.getGod().removePower(6, mgp);
+					ChatUtil.sendString(p, "Your god lost 6 power because you died to another god's follower.");
 				}
+			} else {
+				ChatUtil.sendString(p, "Your god lost 2 power because you died.");
+				god.getGod().removePower(2, mgp);
+				return;
 			}
 		}
 		else

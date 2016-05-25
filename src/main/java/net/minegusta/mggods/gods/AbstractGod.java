@@ -33,7 +33,7 @@ public abstract class AbstractGod {
 	{
 		power -= removed;
 		if(power < 0) power = 0;
-		mgp.addPowerEarned(removed);
+		mgp.addPowerEarned(-removed);
 	}
 
 	public int getPower()
