@@ -73,7 +73,7 @@ public class GodsCommand implements CommandExecutor {
 				}
 				if(args[0].equalsIgnoreCase("players"))
 				{
-					List<String> sendHelp = Lists.newArrayList(ChatColor.YELLOW + "..-[" + ChatColor.GOLD + " Player" + ChatColor.DARK_GRAY + "   |   " + ChatColor.DARK_PURPLE + "Power Earned " + ChatColor.YELLOW + "]-..");
+					List<String> sendHelp = Lists.newArrayList(ChatColor.YELLOW + "-[" + ChatColor.GOLD + " Player" + ChatColor.DARK_GRAY + " | " + ChatColor.DARK_PURPLE + "Power Earned " + ChatColor.YELLOW + "]-");
 					PlayerData.getMGPlayers().stream().forEach(mp ->
 					{
 						if(mp.getGod() == mgp.getGod())
@@ -102,6 +102,7 @@ public class GodsCommand implements CommandExecutor {
 					for(God g : God.values())
 					{
 						gods[i] = ChatColor.GRAY + " - " + g.getGod().getName();
+						i++;
 					}
 
 					ChatUtil.sendList(p, gods);
