@@ -11,12 +11,7 @@ public class SaveTask {
 
 	public static void start()
 	{
-		id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), ()->
-		{
-			ConfigManager.saveGodsPower();
-			PlayerData.getMGPlayers().stream().forEach(PlayerFileManager::saveMGPlayer);
-
-		}, 20 * 300, 20 * 300);
+		id = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), SaveTask::saveAll, 20 * 300, 20 * 300);
 	}
 
 	public static void stop()
@@ -25,5 +20,11 @@ public class SaveTask {
 		{
 			Bukkit.getScheduler().cancelTask(id);
 		}
+	}
+
+	public static void saveAll()
+	{
+		ConfigManager.saveGodsPower();
+		PlayerData.getMGPlayers().stream().forEach(PlayerFileManager::saveMGPlayer);
 	}
 }

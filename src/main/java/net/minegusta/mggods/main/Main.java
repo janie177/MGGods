@@ -1,7 +1,10 @@
 package net.minegusta.mggods.main;
 
 import net.minegusta.mggods.config.ConfigManager;
+import net.minegusta.mggods.config.PlayerFileManager;
+import net.minegusta.mggods.playerdata.PlayerData;
 import net.minegusta.mggods.tasks.SaveTask;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,11 +38,15 @@ public class Main extends JavaPlugin {
 
 		//Tasks
 		SaveTask.start();
+
+		Bukkit.getOnlinePlayers().stream().forEach(p -> PlayerData.addPlayer(p, PlayerFileManager.loadPlayerFromConfig(p)));
 	}
 
 	@Override
 	public void onDisable()
 	{
+		SaveTask.saveAll();
+
 		//Tasks
 		SaveTask.stop();
 	}
