@@ -178,6 +178,7 @@ public class GodsListener implements Listener {
 				if(g.name().equalsIgnoreCase(s))
 				{
 					god = true;
+					chosen = g;
 				}
 			}
 		}
