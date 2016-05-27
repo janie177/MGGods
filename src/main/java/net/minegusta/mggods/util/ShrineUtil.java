@@ -66,7 +66,7 @@ public class ShrineUtil {
 			p.getWorld().spigot().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 0, 0, 1, 1, 1, 1, 10, 30);
 		}
 
-		god.getGod().addPower(2, PlayerData.getPlayer(p));
+		god.getGod().addPower(1, PlayerData.getPlayer(p));
 
 	}
 
