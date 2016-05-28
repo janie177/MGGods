@@ -144,6 +144,7 @@ public class GodsListener implements Listener {
 											ChatColor.LIGHT_PURPLE + "Your god gained 2 power from your prayer."
 									});
 							god.getGod().addPower(2, PlayerData.getPlayer(p));
+							ShrineCooldown.setCooldown(p);
 						}
 					}
 					else
