@@ -45,8 +45,7 @@ public class Talos extends AbstractGod {
 		return shrineBlocks;
 	}
 
-	private static List<Material> rewards = Lists.newArrayList(Material.DIAMOND_SWORD, Material.DIAMOND_ORE, Material.DIAMOND, Material.EMERALD, Material.GOLD_BLOCK, Material.GOLD_INGOT, Material.IRON_INGOT, Material.IRON_CHESTPLATE, Material.LAVA_BUCKET, Material.COAL_BLOCK, Material.EMERALD_BLOCK, Material.IRON_INGOT, Material.LAVA_BUCKET, Material.GREEN_RECORD, Material.JUKEBOX, Material.ENDER_CHEST, Material.ENCHANTMENT_TABLE, Material.DIAMOND, Material.GOLD_INGOT, Material.GOLD_ORE, Material.IRON_ORE);
-
+	private static List<Material> rewards = Lists.newArrayList(Material.DIAMOND_SWORD, Material.DIAMOND_ORE, Material.DIAMOND, Material.EMERALD, Material.GOLD_BLOCK, Material.GOLD_INGOT, Material.IRON_INGOT, Material.IRON_CHESTPLATE, Material.LAVA_BUCKET, Material.COAL_BLOCK, Material.EMERALD_BLOCK, Material.IRON_INGOT, Material.LAVA_BUCKET, Material.GREEN_RECORD, Material.JUKEBOX, Material.ENDER_CHEST, Material.ENCHANTMENT_TABLE, Material.DIAMOND, Material.GOLD_INGOT, Material.GOLD_ORE, Material.IRON_ORE, Material.DIRT, Material.GRASS, Material.GRASS_PATH, Material.OBSIDIAN, Material.STONE, Material.IRON_AXE, Material.IRON_INGOT, Material.IRON_BOOTS, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_HELMET, Material.IRON_SWORD, Material.WOOD, Material.LOG, Material.LEAVES, Material.WATER_BUCKET);
 	@Override
 	public List<Material> getRandomRewards() {
 		return rewards;
@@ -66,5 +65,65 @@ public class Talos extends AbstractGod {
 				return ChatColor.WHITE + "-=-=-=-=-";
 		}
 		return "";
+	}
+
+	private static String[] positive = new String[]{
+			"We are winning this war!",
+			"We are ruling the land!",
+			"Keep slaying those who are against us.",
+			"Slay in my cause, and I will reward you.",
+			"I once walked among you. Not as god, but as man!",
+			"Build more shrines in my cause!",
+			"Keep praying and we will remain undefeated.",
+			"We are prosperous.",
+			"The human race shall overcome!",
+			"Humans are the only pure race."
+	};
+
+	@Override
+	public String[] getPositiveSpeech() {
+		return positive;
+	}
+
+	@Override
+	public String getChatTag() {
+		return ChatColor.DARK_GRAY + "[" + getName() + ChatColor.DARK_GRAY + "]";
+	}
+
+	private static String[] negative = new String[]{
+			"Bear the sword and shield. Crusade in my cause.",
+			"We are losing this war.",
+			"Stick together humans, and we will rule once more!",
+			"Pick up the sword and conquer.",
+			"Do not fear death. Fear a life of slavery.",
+			"Today is a black day for us.",
+			"The future may be better. Fight for it.",
+			"We have to fight for our freedom.",
+			"Pick up the sword and remain a free race.",
+			"Do not lose faith. Faith keeps us alive.",
+			"We need more power."
+	};
+
+	@Override
+	public String[] getNegativeSpeech() {
+		return negative;
+	}
+
+
+	private static String[] playerPositive = new String[]{
+			"You do well. Fight for me!",
+			"Conquer land and make settlements!",
+			"Become immortal. Gain more followers!",
+			"You are a loyal follower.",
+			"I will answer your prayers!",
+			"Make shrines for our cause.",
+			"You are a brave warrior!",
+			"You will be rewarded in the afterlife.",
+			"You do not know fear. I am proud."
+	};
+
+	@Override
+	public String[] getPlayerPositiveSpeech() {
+		return  playerPositive;
 	}
 }

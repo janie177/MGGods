@@ -3,6 +3,8 @@ package net.minegusta.mggods.main;
 import net.minegusta.mggods.config.ConfigManager;
 import net.minegusta.mggods.config.PlayerFileManager;
 import net.minegusta.mggods.playerdata.PlayerData;
+import net.minegusta.mggods.tasks.GodsTalkTask;
+import net.minegusta.mggods.tasks.PowerDrainTask;
 import net.minegusta.mggods.tasks.SaveTask;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -38,6 +40,8 @@ public class Main extends JavaPlugin {
 
 		//Tasks
 		SaveTask.start();
+		GodsTalkTask.start();
+		PowerDrainTask.start();
 
 		Bukkit.getOnlinePlayers().stream().forEach(p -> PlayerData.addPlayer(p, PlayerFileManager.loadPlayerFromConfig(p)));
 	}
@@ -46,6 +50,8 @@ public class Main extends JavaPlugin {
 	public void onDisable()
 	{
 		SaveTask.saveAll();
+		GodsTalkTask.stop();
+		PowerDrainTask.stop();
 
 		//Tasks
 		SaveTask.stop();

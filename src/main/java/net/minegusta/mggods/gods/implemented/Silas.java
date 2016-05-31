@@ -47,8 +47,7 @@ public class Silas extends AbstractGod {
 		return shrineBlocks;
 	}
 
-	private static List<Material> rewards = Lists.newArrayList(Material.DIAMOND_SWORD, Material.DIAMOND_ORE, Material.DIAMOND, Material.EMERALD, Material.GOLD_BLOCK, Material.GOLD_INGOT, Material.IRON_INGOT, Material.IRON_CHESTPLATE, Material.LAVA_BUCKET, Material.COAL_BLOCK, Material.EMERALD_BLOCK, Material.IRON_INGOT, Material.LAVA_BUCKET, Material.GREEN_RECORD, Material.JUKEBOX, Material.ENDER_CHEST, Material.ENCHANTMENT_TABLE, Material.DIAMOND, Material.GOLD_INGOT, Material.GOLD_ORE, Material.IRON_ORE);
-
+	private static List<Material> rewards = Lists.newArrayList(Material.DIAMOND_SWORD, Material.DIAMOND_ORE, Material.DIAMOND, Material.EMERALD, Material.GOLD_BLOCK, Material.GOLD_INGOT, Material.IRON_INGOT, Material.IRON_CHESTPLATE, Material.LAVA_BUCKET, Material.COAL_BLOCK, Material.EMERALD_BLOCK, Material.IRON_INGOT, Material.LAVA_BUCKET, Material.GREEN_RECORD, Material.JUKEBOX, Material.ENDER_CHEST, Material.ENCHANTMENT_TABLE, Material.DIAMOND, Material.GOLD_INGOT, Material.GOLD_ORE, Material.IRON_ORE, Material.DIRT, Material.GRASS, Material.GRASS_PATH, Material.OBSIDIAN, Material.STONE, Material.IRON_AXE, Material.IRON_INGOT, Material.IRON_BOOTS, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_HELMET, Material.IRON_SWORD, Material.WOOD, Material.LOG, Material.LEAVES, Material.WATER_BUCKET);
 	@Override
 	public List<Material> getRandomRewards() {
 		return rewards;
@@ -68,5 +67,61 @@ public class Silas extends AbstractGod {
 				return ChatColor.AQUA + "-=-=-=-=-";
 		}
 		return "";
+	}
+
+
+	private static String[] positive = new String[]{
+			"We are winning this war.",
+			"Let our light cleanse this land.",
+			"Peace is upon us.",
+			"Pray and I shall give back.",
+			"I will reward you for praying my child.",
+			"Soon there will be only light.",
+			"Pray for all that is good.",
+			"Pity those that oppose us."
+	};
+
+	@Override
+	public String[] getPositiveSpeech() {
+		return positive;
+	}
+
+	@Override
+	public String getChatTag() {
+		return ChatColor.GOLD + "[" + getName() + ChatColor.GOLD + "]";
+	}
+
+	private static String[] negative = new String[]{
+			"I'm afraid we are losing.",
+			"Go and fetch me more power my child.",
+			"You have to believe harder.",
+			"Fulfill your duty to me and pray.",
+			"Do not fear my child, we shall overcome this.",
+			"Believe in me and good things will happen.",
+			"Do not be afraid. The light shall cleanse.",
+			"Better times are ahead of us.",
+			"We need more shrines to rule again.",
+			"Build me more altars my child.",
+			"Have faith in me."
+	};
+
+	@Override
+	public String[] getNegativeSpeech() {
+		return negative;
+	}
+
+
+	private static String[] playerPositive = new String[]{
+			"You are a loyal follower.",
+			"Spread the word of our religion.",
+			"You will be rewarded.",
+			"You are doing well. Keep on praying.",
+			"Tell more people about our cause.",
+			"Embrace the light my child."
+	};
+
+	@Override
+	public String[] getPlayerPositiveSpeech() {
+		return  playerPositive;
 	}
 }

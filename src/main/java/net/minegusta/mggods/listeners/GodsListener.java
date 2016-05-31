@@ -76,7 +76,7 @@ public class GodsListener implements Listener {
 				MGPlayer damagerMGP = PlayerData.getPlayer(damager);
 				God damagerGod = GodsPlugin.getGodForPlayer(damager);
 				if (damagerGod != god) {
-					if(mgp.getPowerEarned() < -19)
+					if(mgp.getPowerEarned() < -14)
 					{
 						ChatUtil.sendString(damager, "The player you killed died too often to give you any god power.");
 						ChatUtil.sendString(p, "You died too often and did not lose any more god power.");
@@ -95,7 +95,7 @@ public class GodsListener implements Listener {
 				MGPlayer damagerMGP = PlayerData.getPlayer(damager);
 				if(damagerGod != god)
 				{
-					if(mgp.getPowerEarned() < -19)
+					if(mgp.getPowerEarned() < -14)
 					{
 						ChatUtil.sendString(damager, "The player you killed died too often to give you any god power.");
 						ChatUtil.sendString(p, "You died too often and did not lose any more god power.");
@@ -107,7 +107,7 @@ public class GodsListener implements Listener {
 					ChatUtil.sendString(p, "Your god lost 6 power because you died to another god's follower.");
 				}
 			} else {
-				if(mgp.getPowerEarned() < -19)
+				if(mgp.getPowerEarned() < -14)
 				{
 					ChatUtil.sendString(p, "You died too often and did not lose any more god power.");
 					return;
@@ -119,7 +119,7 @@ public class GodsListener implements Listener {
 		}
 		else
 		{
-			if(mgp.getPowerEarned() < -19)
+			if(mgp.getPowerEarned() < -14)
 			{
 				ChatUtil.sendString(p, "You died too often and did not lose any more god power.");
 				return;

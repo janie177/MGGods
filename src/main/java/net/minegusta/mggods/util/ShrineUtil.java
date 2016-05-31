@@ -4,6 +4,7 @@ import com.minegusta.mgracesredone.util.RandomUtil;
 import net.minegusta.mggods.gods.God;
 import net.minegusta.mggods.gods.shrineblocks.ShrineBlock;
 import net.minegusta.mggods.main.GodsPlugin;
+import net.minegusta.mggods.playerdata.MGPlayer;
 import net.minegusta.mggods.playerdata.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -49,6 +50,18 @@ public class ShrineUtil {
 
 	public static void rewardPlayer(Player p, God god, int value)
 	{
+		MGPlayer mgp = PlayerData.getPlayer(p);
+
+		if(mgp.getPowerEarned() < 0)
+		{
+			ChatUtil.sendList(p, new String[]{
+					ChatColor.YELLOW + "You pray to your god, giving 1 extra power!",
+					ChatColor.LIGHT_PURPLE + "Your power needs to be positive in order to gain rewards.",
+					ChatColor.LIGHT_PURPLE + "Try to stay alive instead of dying so often!"
+			});
+			return;
+		}
+
 		int amount = value / 50;
 
 		if(amount > 9) amount = 9;

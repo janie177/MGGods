@@ -23,17 +23,25 @@ public abstract class AbstractGod {
 
 	public abstract String getShrineLine(int line);
 
+	public abstract String[] getPositiveSpeech();
+
+	public abstract String[] getPlayerPositiveSpeech();
+
+	public abstract String getChatTag();
+
+	public abstract String[] getNegativeSpeech();
+
 	public void addPower(int added, MGPlayer mgp)
 	{
 		this.power += added;
-		mgp.addPowerEarned(added);
+		if(mgp != null) mgp.addPowerEarned(added);
 	}
 
 	public void removePower(int removed, MGPlayer mgp)
 	{
 		power -= removed;
 		if(power < 0) power = 0;
-		mgp.addPowerEarned(-removed);
+		if(mgp != null) mgp.addPowerEarned(-removed);
 	}
 
 	public int getPower()

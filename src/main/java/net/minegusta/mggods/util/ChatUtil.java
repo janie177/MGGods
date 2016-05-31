@@ -1,5 +1,6 @@
 package net.minegusta.mggods.util;
 
+import net.minegusta.mggods.gods.God;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -16,5 +17,10 @@ public class ChatUtil {
 		{
 			p.sendMessage(" " + s);
 		}
+	}
+
+	public static void sendMessageAsGod(God god, Player player, String message)
+	{
+		player.sendMessage(god.getGod().getChatTag() + ChatColor.GRAY + " " + ChatColor.ITALIC + " " + message);
 	}
 }
