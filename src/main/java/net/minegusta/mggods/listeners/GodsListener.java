@@ -164,9 +164,9 @@ public class GodsListener implements Listener {
 											ChatColor.YELLOW + "You pray, but gain no rewards.",
 											ChatColor.GRAY + "In order to gain rewards, your god",
 											ChatColor.GRAY + "need to have the most power of all.",
-											ChatColor.LIGHT_PURPLE + "Your god gained 2 power from your prayer."
+											ChatColor.LIGHT_PURPLE + "Your god gained 4 power from your prayer."
 									});
-							god.getGod().addPower(2, PlayerData.getPlayer(p));
+							god.getGod().addPower(4, PlayerData.getPlayer(p));
 							ShrineCooldown.setCooldown(p);
 						}
 					}

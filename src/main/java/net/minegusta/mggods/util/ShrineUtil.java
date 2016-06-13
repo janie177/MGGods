@@ -67,7 +67,7 @@ public class ShrineUtil {
 		if(amount > 9) amount = 9;
 
 		ChatUtil.sendList(p, new String[]{
-				ChatColor.YELLOW + "You pray to your god, giving 1 extra power!",
+				ChatColor.YELLOW + "You pray to your god, giving 2 extra power!",
 				ChatColor.LIGHT_PURPLE + "Your shrine has a total value of: " + ChatColor.DARK_PURPLE + value + ChatColor.LIGHT_PURPLE + ".",
 				ChatColor.LIGHT_PURPLE + "This means you will get: " + ChatColor.DARK_PURPLE + amount + ChatColor.LIGHT_PURPLE + " rewards.",
 		});
@@ -79,7 +79,7 @@ public class ShrineUtil {
 			p.getWorld().spigot().playEffect(p.getLocation(), Effect.MOBSPAWNER_FLAMES, 0, 0, 1, 1, 1, 1, 10, 30);
 		}
 
-		god.getGod().addPower(1, PlayerData.getPlayer(p));
+		god.getGod().addPower(2, PlayerData.getPlayer(p));
 
 	}
 

@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 public class PowerDrainTask {
 
 	private static int ID = -1;
-	private static int interval = 2;
 
 	public static void stop()
 	{
@@ -25,13 +24,8 @@ public class PowerDrainTask {
 			for(God god : God.values())
 			{
 				god.getGod().removePower(1, null);
-				if(interval > 1) PlayerData.getMGPlayers().stream().filter(mgp -> mgp.getPowerEarned() < 0).forEach(mgp -> mgp.addPowerEarned(1));
+				PlayerData.getMGPlayers().stream().filter(mgp -> mgp.getPowerEarned() < 0).forEach(mgp -> mgp.addPowerEarned(1));
 			}
-			interval++;
-			if(interval > 2)
-			{
-				interval = 1;
-			}
-		}, 20 * 900, 20 * 900);
+		}, 20 * 3600, 20 * 3600);
 	}
 }
